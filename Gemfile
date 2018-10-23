@@ -6,6 +6,9 @@ ruby '2.5.1'
 #active admin gem
 gem 'activeadmin'
 
+# to upload pictures
+gem 'carrierwave', '~> 1.0'
+
 # Plus integrations with:
 gem 'devise'
 gem 'cancan' # or cancancan
