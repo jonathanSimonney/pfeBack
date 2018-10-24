@@ -9,6 +9,9 @@ gem 'activeadmin'
 # to upload pictures
 gem 'carrierwave', '~> 1.0'
 
+# to have a wysihtml editor
+gem 'active_admin_editor', github: 'boontdustie/active_admin_editor'
+
 # Plus integrations with:
 gem 'devise'
 gem 'cancan' # or cancancan
