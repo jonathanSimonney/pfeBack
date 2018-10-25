@@ -12,6 +12,9 @@ gem 'carrierwave', '~> 1.0'
 # to have a wysihtml editor
 gem 'active_admin_editor', github: 'boontdustie/active_admin_editor'
 
+#for geolocalisation in db
+gem 'geokit-rails'
+
 # Plus integrations with:
 gem 'devise'
 gem 'cancan' # or cancancan
