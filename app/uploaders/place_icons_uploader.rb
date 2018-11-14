@@ -4,13 +4,17 @@ class PlaceIconsUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.test? or Rails.env.development?
+  if Rails.env.test?
     storage :file
   else
-    storage :fog
+    storage :aws
   end
 
-  # storage :fog
+  # You can find a full list of custom headers in AWS SDK documentation on
+  # AWS::S3::S3Object
+  def download_url(filename)
+    url(response_content_disposition: %Q{attachment; filename="#{filename}"})
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

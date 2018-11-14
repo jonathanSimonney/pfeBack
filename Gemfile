@@ -12,7 +12,7 @@ gem 'activeadmin'
 # to upload pictures
 gem 'carrierwave', '~> 1.2'
 # ... through aws
-gem "fog-aws"
+gem 'carrierwave-aws'
 
 # to have a wysihtml editor
 gem 'active_admin_editor', github: 'boontdustie/active_admin_editor'
