@@ -3,11 +3,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+#so that we can declare env vars in a .env and access these environment variable easily
+gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
+
 #active admin gem
 gem 'activeadmin'
 
 # to upload pictures
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.2'
+# ... through aws
+gem "fog-aws"
 
 # to have a wysihtml editor
 gem 'active_admin_editor', github: 'boontdustie/active_admin_editor'
