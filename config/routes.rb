@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/interestPoints/:lat/:lng', action: :find_by, controller: 'interest_point'
+    get '/interestPointsIcons', action: :list, controller: 'interest_point_icon'
   end
 
 end
