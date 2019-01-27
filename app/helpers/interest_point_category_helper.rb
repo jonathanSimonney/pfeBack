@@ -1,0 +1,2 @@
+module InterestPointCategoryHelper
+end

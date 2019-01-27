@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_104503) do
+ActiveRecord::Schema.define(version: 2019_01_24_204755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 2019_01_17_104503) do
     t.datetime "updated_at", null: false
     t.string "icon"
     t.text "description"
+    t.bigint "interest_point_category_id"
+    t.index ["interest_point_category_id"], name: "index_interest_points_on_interest_point_category_id"
   end
 
+  add_foreign_key "interest_points", "interest_point_categories"
 end
