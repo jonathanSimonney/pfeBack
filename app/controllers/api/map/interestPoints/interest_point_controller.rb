@@ -1,4 +1,4 @@
-class Api::InterestPointController < ApplicationController
+class Api::Map::InterestPoints::InterestPointController < ApplicationController
   MAX_DISTANCE_TO_DISPLAY = 200 # in km
 
   def find_by
