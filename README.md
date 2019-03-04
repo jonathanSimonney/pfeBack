@@ -13,8 +13,19 @@ application up and running.
 go to `/admin`
 
 ### api
-### user (not yet implemented)
-#### creation (Doc will be written when it will be done...)
+### user (not yet finished implementation)
+#### creation 
+On `/api/user/create`, send a raw json (for example, like this 
+```json
+{  
+    "user": {
+        "email": "me@gmail.com",
+        "password": "password11",
+        "password_confirmation": "password11"
+    }
+}
+```
+). There is currently no error message sent back in case something is wrong.
 #### map
 ##### interest points 
 
