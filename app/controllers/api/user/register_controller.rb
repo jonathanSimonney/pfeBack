@@ -2,16 +2,23 @@ class Api::User::RegisterController < Devise::RegistrationsController
   protect_from_forgery prepend: true
   respond_to :json
   def create
-    super do |resource|
-      if resource.persisted?
-        puts "persisted resource" # a user was created
-      else
-        puts "not persisted resource" # no user was created (be it because of duplicate field OR password not long enough)
+    build_resource(sign_up_params)
 
-        puts resource.errors.full_messages
-        puts resource.errors.full_messages.is_a?(Array)
-        puts "a".is_a?(Array)
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
       end
+      render :json => resource
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      render :json => resource.errors.full_messages, :status => :forbidden
     end
   end
 end

@@ -25,14 +25,15 @@ On `/api/user/create`, send a raw json (for example, like this
     }
 }
 ```
-). There is currently no error message sent back in case something is wrong.
+). In case something is wrong, you'll get a 403 error, along with an array of error (encoded
+in json). Otherwhise, you'll get a 200 answer with the created user in json.
 #### map
 ##### interest points 
 
-On `/api/map/interestPoints/:lat/:lng` you'll get interest points in a radius of 200km 
+On `/api/map/interest_points/:lat/:lng` you'll get interest points in a radius of 200km 
 around the latitude and longitude specified.
 
-On `/api/map/interestPoints/icons` you'll get a list of the interestPointIcons.
+On `/api/map/interest_points/icons` you'll get a list of the interestPointIcons.
 
 #### position (not yet implemented)
 On `/api/map/position/add/:lat/:lng/:token` you'll add your current position
