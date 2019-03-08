@@ -9,6 +9,9 @@ gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
 #active admin gem
 gem 'activeadmin'
 
+# gem for authentificating user with an auth token
+gem 'simple_token_authentication', '~> 1.0'
+
 # to upload pictures
 gem 'carrierwave', '~> 1.2'
 # ... through aws

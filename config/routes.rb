@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     namespace :user do
       devise_scope :user do
         post '/create', to: 'register#create'
+        post '/login', to: 'sessions#create'
       end
       # post '/create', to: 'register#create'
     end

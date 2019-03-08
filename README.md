@@ -27,6 +27,25 @@ On `/api/user/create`, send a raw json (for example, like this
 ```
 ). In case something is wrong, you'll get a 403 error, along with an array of error (encoded
 in json). Otherwhise, you'll get a 200 answer with the created user in json.
+
+### login
+On `/api/user/login`, send a raw json (for example, like this 
+```json
+{  
+    "user": {
+        "email": "me@gmail.com",
+        "password": "password11"
+    }
+}
+```
+). In case something is wrong, you'll get a 403 error, along with an array of error (encoded
+   in json). Otherwhise, you'll get a 200 answer with the token in a json like this : 
+```json
+{  
+   "auth_token": "token_value"
+}
+```
+.
 #### map
 ##### interest points 
 
