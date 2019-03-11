@@ -13,4 +13,8 @@ class User < ApplicationRecord
       {"json": {errors: {:password => ['is invalid']}}, status: :unprocessable_entity}
     end
   end
+
+  def display_name
+    self.email
+  end
 end
