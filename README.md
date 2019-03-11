@@ -54,7 +54,22 @@ around the latitude and longitude specified.
 
 On `/api/map/interest_points/icons` you'll get a list of the interestPointIcons.
 
-#### position (not yet implemented)
+#### position
 Make a POST request on `/api/map/position/add/:lat/:lng/:token` you'll add your current position
 on the map. The token is given by the API when you connect (see the user part
-of the API)
+of the API). You'll get a 200 with the json : 
+
+```json
+{  
+   "result": "success"
+}
+```
+
+if the request is a success and a 401 if the token was invalid, with the following json : 
+
+```json
+{  
+   "error": "wrong token"
+}
+```
+.

@@ -7,8 +7,9 @@ class Api::Map::Position::PositionController < ApplicationController
 
     if @user
       Position.find_or_initialize_by(:user_id => @user.id).update(:lng => @lng, :lat => @lat, :shared_at => Time.now)
+      render :json => {:result => "success"}
     else
-      puts "send error"
+      render :json => {:error => "wrong token"}, :status => :unauthorized
     end
   end
 end
