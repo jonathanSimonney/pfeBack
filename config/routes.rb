@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
     namespace :map do
       namespace :position do
-        get '/add/:lat/:lng/:token', action: :add, controller: 'position'
+        post '/add/:lat/:lng/:token', action: :add, controller: 'position'
       end
       namespace :interest_points do
         get '/:lat/:lng', action: :find_by, controller: 'interest_point'
