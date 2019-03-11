@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       # post '/create', to: 'register#create'
     end
     namespace :map do
+      namespace :position do
+        get '/add/:lat/:lng/:token', action: :add, controller: 'position'
+      end
       namespace :interest_points do
         get '/:lat/:lng', action: :find_by, controller: 'interest_point'
         get '/icons', action: :list, controller: 'interest_point_category'

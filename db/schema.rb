@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_081759) do
+ActiveRecord::Schema.define(version: 2019_03_11_161615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 2019_03_08_081759) do
     t.index ["interest_point_category_id"], name: "index_interest_points_on_interest_point_category_id"
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
+    t.datetime "shared_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_positions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,4 +85,5 @@ ActiveRecord::Schema.define(version: 2019_03_08_081759) do
   end
 
   add_foreign_key "interest_points", "interest_point_categories"
+  add_foreign_key "positions", "users"
 end
