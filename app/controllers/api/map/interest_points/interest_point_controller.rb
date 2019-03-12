@@ -5,7 +5,8 @@ class Api::Map::InterestPoints::InterestPointController < ApplicationController
     latitude = params['lat'].convert_to_decimal
     longitude = params['lng'].convert_to_decimal
 
-    ret = InterestPoint.within(MAX_DISTANCE_TO_DISPLAY, :origin => [latitude, longitude])
-    render :json => ret
+    interest_points = InterestPoint.within(MAX_DISTANCE_TO_DISPLAY, :origin => [latitude, longitude])
+    positions = Position.within(MAX_DISTANCE_TO_DISPLAY, :origin => [latitude, longitude])
+    render :json => {:interest_points => interest_points, :positions => positions}
   end
 end

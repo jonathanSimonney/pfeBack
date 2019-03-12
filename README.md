@@ -49,7 +49,7 @@ On `/api/user/login`, send a raw json (for example, like this
 #### map
 ##### interest points 
 
-On `/api/map/interest_points/:lat/:lng` you'll get interest points in a radius of 200km 
+On `/api/map/interest_points/:lat/:lng` you'll get interest points and positions in a radius of 200km 
 around the latitude and longitude specified.
 
 On `/api/map/interest_points/icons` you'll get a list of the interestPointIcons.
