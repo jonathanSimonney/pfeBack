@@ -13,4 +13,16 @@ class Api::User::SessionsController < Devise::SessionsController
 
 
   end
+
+  def public_show
+    user = User.find_by(id: params[:user_id])
+
+    puts user
+
+    if user
+      render json: user.get_public_infos
+    else
+      render json: {errors: 'no user found'}, status: :unprocessable_entity
+    end
+  end
 end

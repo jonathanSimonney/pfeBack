@@ -46,6 +46,10 @@ On `/api/user/login`, send a raw json (for example, like this
 }
 ```
 .
+
+### profile
+On `/api/user/profile/:user_id`, with a get request, you'll get the public informations
+ of the user whose id you sent, or an error if the id you sent doesn't exist. 
 #### map
 ##### interest points 
 
