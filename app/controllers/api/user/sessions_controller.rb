@@ -17,8 +17,6 @@ class Api::User::SessionsController < Devise::SessionsController
   def public_show
     user = User.find_by(id: params[:user_id])
 
-    puts user
-
     if user
       render json: user.get_public_infos
     else
