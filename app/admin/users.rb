@@ -12,12 +12,34 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
-  permit_params :email, :password, :password_confirmation, :authentication_token
+  permit_params :email, :password, :password_confirmation, :authentication_token, profile_attributes: [:id, :profile_name, :profile_desc, :profile_pic]
 
   index do
     selectable_column
     id_column
     column :email
+    column "profilePicture" do |user|
+      if user.profile && user.profile.profile_pic.file
+        image_tag(user.profile.profile_pic.url, width: 300)
+      else
+        "no profile picture"
+      end
+    end
+    column "profileName" do |user|
+      if user.profile
+        user.profile.profile_name
+      else
+        "no profile"
+      end
+    end
+
+    column "profileDesc" do |user|
+      if user.profile
+        user.profile.profile_desc
+      else
+        "no profile"
+      end
+    end
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -36,6 +58,11 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
       f.input :authentication_token
+      f.inputs "Profile", for: [:profile, f.object.profile || Profile.new] do |profile_form|
+        profile_form.input :profile_name
+        profile_form.input :profile_desc, as: :html_editor
+        profile_form.input :profile_pic, :as => :file
+      end
     end
     f.actions
   end

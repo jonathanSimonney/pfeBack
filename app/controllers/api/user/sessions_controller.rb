@@ -10,8 +10,6 @@ class Api::User::SessionsController < Devise::SessionsController
     else
       render json: {errors: {:email => ['is invalid']}}, status: :unprocessable_entity
     end
-
-
   end
 
   def public_show
@@ -23,4 +21,9 @@ class Api::User::SessionsController < Devise::SessionsController
       render json: {errors: 'no user found'}, status: :unprocessable_entity
     end
   end
+  #
+  # def edit
+  #   @user = User.where(authentication_token: params[:token]).first
+  #
+  # end
 end
