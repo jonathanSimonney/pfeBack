@@ -66,4 +66,16 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
+  controller do
+    def update
+      model = :user
+
+      if params[model][:password].blank?
+        %w(password password_confirmation).each { |p| params[model].delete(p) }
+      end
+
+      super
+    end
+  end
 end
