@@ -16,6 +16,8 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'carrierwave', '~> 1.2'
 # ... through aws
 gem 'carrierwave-aws'
+# ... and from a base_64 string
+gem 'carrierwave-base64'
 
 # to have a wysihtml editor
 gem 'active_admin_editor', github: 'boontdustie/active_admin_editor'

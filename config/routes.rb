@@ -11,9 +11,9 @@ Rails.application.routes.draw do
       devise_scope :user do
         post '/create', to: 'register#create'
         post '/login', to: 'sessions#create'
+        post '/profile/:token', to: 'register#create_profile'
         get '/profile/:user_id', to: 'sessions#public_show'
       end
-      # post '/create', to: 'register#create'
     end
     namespace :map do
       namespace :position do
