@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::Map::Position::PositionController < ApplicationController
   protect_from_forgery prepend: true
   def add
@@ -6,10 +8,10 @@ class Api::Map::Position::PositionController < ApplicationController
     @lat = params[:lat].convert_to_decimal
 
     if @user
-      Position.find_or_initialize_by(:user_id => @user.id).update(:lng => @lng, :lat => @lat, :shared_at => Time.now)
-      render :json => {:result => "success"}
+      Position.find_or_initialize_by(user_id: @user.id).update(lng: @lng, lat: @lat, shared_at: Time.now)
+      render json: { result: 'success' }
     else
-      render :json => {:error => "wrong token"}, :status => :unauthorized
+      render json: { error: 'wrong token' }, status: :unauthorized
     end
   end
 end

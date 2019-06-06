@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::User::SessionsController < Devise::SessionsController
   protect_from_forgery prepend: true
   respond_to :json
@@ -8,7 +10,7 @@ class Api::User::SessionsController < Devise::SessionsController
     if user
       render user.session_login(sign_in_params[:password])
     else
-      render json: {errors: {:email => ['is invalid']}}, status: :unprocessable_entity
+      render json: { errors: { email: ['is invalid'] } }, status: :unprocessable_entity
     end
   end
 
@@ -18,7 +20,7 @@ class Api::User::SessionsController < Devise::SessionsController
     if user
       render json: user.get_public_infos
     else
-      render json: {errors: 'no user found'}, status: :unprocessable_entity
+      render json: { errors: 'no user found' }, status: :unprocessable_entity
     end
   end
   #

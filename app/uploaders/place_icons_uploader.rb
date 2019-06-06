@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlaceIconsUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -13,7 +15,7 @@ class PlaceIconsUploader < CarrierWave::Uploader::Base
   # You can find a full list of custom headers in AWS SDK documentation on
   # AWS::S3::S3Object
   def download_url(filename)
-    url(response_content_disposition: %Q{attachment; filename="#{filename}"})
+    url(response_content_disposition: %(attachment; filename="#{filename}"))
   end
 
   # Override the directory where uploaded files will be stored.
