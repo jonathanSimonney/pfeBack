@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def session_login(password)
     if valid_password?(password)
-      { "json": { "auth_token": authentication_token } }
+      { "json": { "auth_token": authentication_token, "id": self.id } }
     else
       { "json": { errors: { password: ['is invalid'] } }, status: :unprocessable_entity }
     end
