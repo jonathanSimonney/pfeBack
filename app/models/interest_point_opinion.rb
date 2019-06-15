@@ -1,0 +1,2 @@
+class InterestPointOpinion < ApplicationRecord
+end
