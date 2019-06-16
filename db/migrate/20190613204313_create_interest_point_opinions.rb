@@ -3,7 +3,7 @@ class CreateInterestPointOpinions < ActiveRecord::Migration[5.2]
     create_table :interest_point_opinions do |t|
       t.string :title
       t.text :message
-      t.int :grade
+      t.integer :grade
 
       t.timestamps
     end

@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   acts_as_token_authenticatable
 
+  has_many :interest_point_opinions
+
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
 
