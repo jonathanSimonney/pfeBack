@@ -1,15 +1,24 @@
 ActiveAdmin.register InterestPointOpinion do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :title, :message, :grade, :user_id, :interest_point_id
 
+  form(html: { multipart: true }) do |f|
+    f.inputs "notation d'un point d'intérêt" do
+      f.input :title
+      f.input :message
+      f.input :grade
+      f.input :user
+      f.input :interest_point
+    end
+    f.actions
+  end
+
+  index do
+    id_column
+    column :title
+    column :message
+    column :grade
+    column :user
+    column :interest_point
+    actions
+  end
 end

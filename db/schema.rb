@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2019_06_16_115134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "interest_points_id"
-    t.index ["interest_points_id"], name: "index_interest_point_opinions_on_interest_points_id"
+    t.bigint "interest_point_id"
+    t.index ["interest_point_id"], name: "index_interest_point_opinions_on_interest_point_id"
     t.index ["user_id"], name: "index_interest_point_opinions_on_user_id"
   end
 
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_115134) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "interest_point_opinions", "interest_points", column: "interest_points_id"
+  add_foreign_key "interest_point_opinions", "interest_points"
   add_foreign_key "interest_point_opinions", "users"
   add_foreign_key "interest_points", "interest_point_categories"
   add_foreign_key "positions", "users"
