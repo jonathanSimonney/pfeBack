@@ -42,6 +42,17 @@ class Api::User::RegisterController < Devise::RegistrationsController
         image_as_file = parse_image_data(body['user']['profile_pic'])
         user_profile.update(profile_pic: image_as_file)
       end
+
+      unless body['user']['vehicle_desc'].nil?
+        user_profile.update(vehicle_desc: body['user']['vehicle_desc'])
+      end
+      unless body['user']['vehicle_pic'].nil?
+        # raw_profile_pic = Base64.decode64 body["user"]["profile_pic"]
+        # params[:filetype]
+        #
+        image_as_file = parse_image_data(body['user']['vehicle_pic'])
+        user_profile.update(vehicle_pic: image_as_file)
+      end
       render json: { result: 'success' }
     else
       render json: { error: 'wrong token' }, status: :unauthorized

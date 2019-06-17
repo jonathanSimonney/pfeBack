@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_115134) do
 
   add_foreign_key "interest_point_opinions", "interest_points"
   add_foreign_key "interest_point_opinions", "users"
+
   add_foreign_key "interest_points", "interest_point_categories"
   add_foreign_key "positions", "users"
   add_foreign_key "profiles", "users"

@@ -14,7 +14,7 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
-  permit_params :email, :password, :password_confirmation, :authentication_token, profile_attributes: %i[id profile_name profile_desc profile_pic]
+  permit_params :email, :password, :password_confirmation, :authentication_token, profile_attributes: %i[id profile_name profile_desc profile_pic vehicle_desc vehicle_pic]
 
   index do
     selectable_column
@@ -42,6 +42,21 @@ ActiveAdmin.register User do
         'no profile'
       end
     end
+    column 'vehiclePicture' do |user|
+      if user.profile&.vehicle_pic&.file
+        image_tag(user.profile.vehicle_pic.url, width: 300)
+      else
+        'no vehicle picture'
+      end
+    end
+
+    column 'vehicleDesc' do |user|
+      if user.profile
+        user.profile.vehicle_desc
+      else
+        'no vehicle desc'
+      end
+    end
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -64,6 +79,9 @@ ActiveAdmin.register User do
         profile_form.input :profile_name
         profile_form.input :profile_desc, as: :html_editor
         profile_form.input :profile_pic, as: :file
+
+        profile_form.input :vehicle_desc, as: :html_editor
+        profile_form.input :vehicle_pic, as: :file
       end
     end
     f.actions
