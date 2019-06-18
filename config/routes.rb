@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         post '/add/:lat/:lng/:token', action: :add, controller: 'position'
       end
       namespace :interest_points do
+        post '/opinion/create/:token/:interest_point_id', action: :create_opinion, controller: 'interest_point'
         get '/:lat/:lng', action: :find_by, controller: 'interest_point'
         get '/icons', action: :list, controller: 'interest_point_category'
       end
