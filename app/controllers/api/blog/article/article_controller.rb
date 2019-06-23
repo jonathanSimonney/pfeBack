@@ -11,11 +11,21 @@ class Api::Blog::Article::ArticleController < ApplicationController
 
       title = body['title']
       content = body['content']
-      if title.nil? || content.nil?
-        render json: { result: 'missing parameters. expected title and content params' }, status: :bad_request
+      category_id = body['category_id']
+      if category_id.nil?
+        render json: { result: 'missing parameters. expected category__id' }, status: :bad_request
       else
-        Article.new(user_id: @user.id, content: content, title: title).save
-        render json: { result: 'success' }
+        category = ArticleCategory.find_by(id: category_id)
+        if category.nil?
+          render json: { result: 'wrong parameters. the category you gave does not exist' }, status: :bad_request
+        else
+          if title.nil? || content.nil?
+            render json: { result: 'missing parameters. expected title and content params' }, status: :bad_request
+          else
+            Article.new(user_id: @user.id, content: content, title: title, article_category_id: category_id).save
+            render json: { result: 'success' }
+          end
+        end
       end
     else
       render json: { error: 'wrong token' }, status: :unauthorized
@@ -40,5 +50,27 @@ class Api::Blog::Article::ArticleController < ApplicationController
   def list_category
     ret = ArticleCategory.all
     render json: ret
+  end
+
+  def list_article_in_category
+    ret = Article.where(article_category_id: params['category_id'])
+    render json: hydrate_article_list(ret)
+  end
+
+  def list_article
+    ret = Article.all
+    render json: hydrate_article_list(ret)
+  end
+
+  private
+
+  def hydrate_article_list(article_list)
+    ret = []
+
+    for article in article_list
+      ret.push({article: article, nb_upvote: article.nb_upvote})
+    end
+
+    ret
   end
 end

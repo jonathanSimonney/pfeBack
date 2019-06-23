@@ -4,4 +4,7 @@ class Article < ApplicationRecord
 
   has_many :article_upvotes, dependent: :destroy
 
+  def nb_upvote
+    ArticleUpvote.where(article_id: self.id).count
+  end
 end
