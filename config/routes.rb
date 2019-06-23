@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       namespace :article do
         post '/create/:token', action: :add_article, controller: 'article'
         post '/upvote/:token/:article_id', action: :upvote_article, controller: 'article'
+        get '/category/list', action: :list_category, controller: 'article'
         # get '/category/:category_id', action: :list_in_category, controller: 'article'
         # get '/', action: :list, controller: 'blog'
       end

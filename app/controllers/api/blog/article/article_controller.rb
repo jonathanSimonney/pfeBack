@@ -36,4 +36,9 @@ class Api::Blog::Article::ArticleController < ApplicationController
       render json: { error: 'wrong token or unexhisting article id' }, status: :unauthorized
     end
   end
+
+  def list_category
+    ret = ArticleCategory.all
+    render json: ret
+  end
 end
