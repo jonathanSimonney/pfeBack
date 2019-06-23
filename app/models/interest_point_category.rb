@@ -2,5 +2,5 @@
 
 class InterestPointCategory < ApplicationRecord
   mount_uploader :icon, PlaceIconsUploader
-  has_many :interest_points
+  has_many :interest_points, dependent: :destroy
 end
