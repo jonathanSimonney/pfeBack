@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_19_054214) do
+ActiveRecord::Schema.define(version: 2019_06_23_131809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 2019_06_19_054214) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "article_upvotes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_article_upvotes_on_article_id"
+    t.index ["user_id"], name: "index_article_upvotes_on_user_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -117,6 +126,8 @@ ActiveRecord::Schema.define(version: 2019_06_19_054214) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "article_upvotes", "articles"
+  add_foreign_key "article_upvotes", "users"
   add_foreign_key "articles", "users"
   add_foreign_key "interest_point_opinions", "interest_points"
   add_foreign_key "interest_point_opinions", "users"

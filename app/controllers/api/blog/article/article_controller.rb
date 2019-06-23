@@ -21,4 +21,19 @@ class Api::Blog::Article::ArticleController < ApplicationController
       render json: { error: 'wrong token' }, status: :unauthorized
     end
   end
+
+  def upvote_article
+    @user = User.where(authentication_token: params[:token]).first
+    @article = Article.find_by(id: params[:article_id])
+    if @user && @article
+      if ArticleUpvote.find_by(user_id: @user.id, article_id: params[:article_id]).nil?
+        ArticleUpvote.new(user_id: @user.id, article_id: params[:article_id]).save
+        render json: { result: 'success' }
+      else
+        render json: { result: 'wrong parameters. You already voted on asked article' }, status: :bad_request
+      end
+    else
+      render json: { error: 'wrong token or unexhisting article id' }, status: :unauthorized
+    end
+  end
 end
