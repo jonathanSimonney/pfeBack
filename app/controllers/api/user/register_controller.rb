@@ -17,15 +17,13 @@ class Api::User::RegisterController < Devise::RegistrationsController
     end
   end
 
-  # make a creat_profile method that works as create BUT : - needs connection
-  # - creates a profile instead of a user.
   def create_profile
     @user = User.where(authentication_token: params[:token]).first
     if @user
       body = JSON.parse request.raw_post
       # puts body
       unless body.key?('user')
-        render json: { error: 'wrong token' }, status: :bad_request
+        render json: { error: 'no key user in json' }, status: :bad_request
       end
 
       user_profile = Profile.find_or_initialize_by(user_id: @user.id)
