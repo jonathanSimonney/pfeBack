@@ -67,9 +67,9 @@ class Api::Blog::Article::ArticleController < ApplicationController
   def hydrate_article_list(article_list)
     ret = []
 
-    for article in article_list
-      ret.push({article: article, nb_upvote: article.nb_upvote})
-    end
+    article_list.each {|article|
+      ret.push({article: article, nb_upvote: article.nb_upvote, comment_list: ArticleComment.where(article_id: article.id)})
+    }
 
     ret
   end

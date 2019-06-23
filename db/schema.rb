@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_132913) do
+ActiveRecord::Schema.define(version: 2019_06_23_144730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2019_06_23_132913) do
     t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "article_comments", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "article_id"
+    t.bigint "user_id"
+    t.index ["article_id"], name: "index_article_comments_on_article_id"
+    t.index ["user_id"], name: "index_article_comments_on_user_id"
   end
 
   create_table "article_upvotes", force: :cascade do |t|
@@ -135,6 +146,8 @@ ActiveRecord::Schema.define(version: 2019_06_23_132913) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "article_comments", "articles"
+  add_foreign_key "article_comments", "users"
   add_foreign_key "article_upvotes", "articles"
   add_foreign_key "article_upvotes", "users"
   add_foreign_key "articles", "article_categories"
