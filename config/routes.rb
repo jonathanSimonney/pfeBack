@@ -27,5 +27,16 @@ Rails.application.routes.draw do
         get '/icons', action: :list, controller: 'interest_point_category'
       end
     end
+    namespace :blog do
+      namespace :article do
+        post '/create/:token', action: :add_article, controller: 'article'
+        # post '/upvote/:token/:article_id', action: :upvote_article, controller: 'blog'
+        # get '/category/:category_id', action: :list_in_category, controller: 'blog'
+        # get '/', action: :list, controller: 'blog'
+      end
+      # namespace :comment do
+      #   post 'create/:token/:article_id', action: :create_comment, controller: 'comment'
+      # end
+    end
   end
 end
