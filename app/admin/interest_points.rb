@@ -14,7 +14,7 @@ ActiveAdmin.register InterestPoint do
       f.input :lat
       f.input :lng
       f.input :icon, as: :file
-      f.input :description, as: :html_editor
+      f.input :description
       f.input :interest_point_category
     end
     f.actions
