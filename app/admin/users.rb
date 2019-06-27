@@ -77,10 +77,10 @@ ActiveAdmin.register User do
       f.input :authentication_token
       f.inputs 'Profile', for: [:profile, f.object.profile || Profile.new] do |profile_form|
         profile_form.input :profile_name
-        profile_form.input :profile_desc, as: :html_editor
+        profile_form.input :profile_desc
         profile_form.input :profile_pic, as: :file
 
-        profile_form.input :vehicle_desc, as: :html_editor
+        profile_form.input :vehicle_desc
         profile_form.input :vehicle_pic, as: :file
       end
     end

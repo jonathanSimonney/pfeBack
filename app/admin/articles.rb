@@ -4,7 +4,7 @@ ActiveAdmin.register Article do
   form(html: { multipart: true }) do |f|
     f.inputs "article" do
       f.input :title
-      f.input :content, as: :html_editor
+      f.input :content
       f.input :user
       f.input :article_category
     end
