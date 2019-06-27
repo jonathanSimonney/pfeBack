@@ -43,7 +43,7 @@ class Api::Blog::Article::ArticleController < ApplicationController
         render json: { result: 'wrong parameters. You already voted on asked article' }, status: :bad_request
       end
     else
-      render json: { error: 'wrong token or unexhisting article id' }, status: :unauthorized
+      render json: { error: 'wrong token or unexisting article id' }, status: :unauthorized
     end
   end
 

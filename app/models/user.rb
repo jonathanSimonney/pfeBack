@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :article_upvotes, dependent: :destroy
   has_many :article_comments, dependent: :destroy
 
+  has_many :sent_messages, :class_name => "Message", :foreign_key => 'author_id', dependent: :destroy
+  has_many :received_messages, :class_name => "Message", :foreign_key => 'receptor_id', dependent: :destroy
+
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
 

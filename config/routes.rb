@@ -16,6 +16,11 @@ Rails.application.routes.draw do
         post '/profile/:token', to: 'register#create_profile'
         get '/profile/:user_id', to: 'sessions#public_show'
       end
+
+      namespace :message do
+        post '/create/:token/:to_user_id', action: :create, controller: 'message'
+        get '/list/:token/:to_user_id', action: :find, controller: 'message'
+      end
     end
     namespace :map do
       namespace :position do

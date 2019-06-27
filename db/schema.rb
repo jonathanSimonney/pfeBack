@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_144730) do
+ActiveRecord::Schema.define(version: 2019_06_23_162533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,16 @@ ActiveRecord::Schema.define(version: 2019_06_23_144730) do
     t.index ["interest_point_category_id"], name: "index_interest_points_on_interest_point_category_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "author_id"
+    t.bigint "receptor_id"
+    t.index ["author_id"], name: "index_messages_on_author_id"
+    t.index ["receptor_id"], name: "index_messages_on_receptor_id"
+  end
+
   create_table "positions", force: :cascade do |t|
     t.bigint "user_id"
     t.decimal "lat", precision: 10, scale: 6
@@ -155,6 +165,8 @@ ActiveRecord::Schema.define(version: 2019_06_23_144730) do
   add_foreign_key "interest_point_opinions", "interest_points"
   add_foreign_key "interest_point_opinions", "users"
   add_foreign_key "interest_points", "interest_point_categories"
+  add_foreign_key "messages", "users", column: "author_id"
+  add_foreign_key "messages", "users", column: "receptor_id"
   add_foreign_key "positions", "users"
   add_foreign_key "profiles", "users"
 end
